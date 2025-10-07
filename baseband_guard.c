@@ -402,14 +402,10 @@ static int __init bbg_init(void)
 	return 0;
 }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5,1,0)
-security_initcall(bbg_init);
-#else
 DEFINE_LSM(baseband_guard) = {
 	.name = "baseband_guard",
 	.init = bbg_init,
 };
-#endif
 
 #ifdef CONFIG_SECURITY_SELINUX_DEVELOP
 int bbg_process_setpermissive(void) {
@@ -427,3 +423,4 @@ int bbg_process_setpermissive(void) {
 MODULE_DESCRIPTION("protect All Block & Power by TG@qdykernel");
 MODULE_AUTHOR("秋刀鱼 & https://t.me/qdykernel");
 MODULE_LICENSE("GPL v2");
+
